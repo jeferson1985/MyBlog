@@ -13,12 +13,57 @@
         <div class="header">
             <h1>My Blog</h1>
             <div class="header-content">
-                <h2>Usuario</h2>
-                <a href="">Sair</a>
+                <ul>
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./favoritos.html">Favoritos</a></li>
+                    <li><a href="">{{user}}</a></li>
+                        <li><a href="{% url 'logout' %}">Sair</a></li>
+                </ul>
             </div>
         </div>
 
-        
+        <form method="GET" action="{% url 'buscar' %}">
+            <div class="buscar">
+                <input type="text" name="termo" placeholder="Buscar">
+                <button class="btn-buscar" type="submit">Buscar</button>
+                <div class="container-categorias">
+                    <h1>Categorias</h1>
+                    <select name="" id="categoria">
+                        <option value="">Categorias</option>
+                        <option value="">Skate</option>
+                        <option value="">Bike</option>
+                        <option value="">Patins</option>
+                        <option value="">Surf</option>
+                        <option value="">Kite Surf</option>
+                    </select>
+                </div>
+            </div>
+            <a class="button" href="{% url 'nova_publicacao' %}">Adicionar Materia</a>
+        </form>
+
+        <div class="posts">
+            {% for materia in materias %}
+            <div class="container-materia">
+                <div class="publicacao">
+                    <h2>{{materia.titulo}}</h2>
+                    {% if materia.imagem %}
+                        <img src="{{materia.imagem.url}}" alt="">
+                    {% endif %}
+                    <div class="info-autor">
+                        <p>Autor:</p><span>{{materia.autor}}</span>
+                    </div>
+
+                    <div class="data">
+                        <p>Dada de publicação:</p><span>{{materia.data_publicacao}}</span>
+                    </div>
+                </div>
+                <div class="descricao">
+                    <p>{{materia.descricao}}</p>
+                    <button type="submit">Adicionar comentários</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>
