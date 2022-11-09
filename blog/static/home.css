@@ -121,6 +121,10 @@ span {
     padding: 0 .5rem;
 }
 
+.categoria {
+    display: flex;
+}
+
 @media (max-width:768px){
     .posts {
         display: block;

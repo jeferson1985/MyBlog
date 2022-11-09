@@ -14,7 +14,7 @@ def index(request):
     
 def buscar(request):
     termo = request.GET.get('termo')#name="termo" no html
-    materias = Materia.objects.filter(titulo__icontains =termo)#icontains usado para filtrar
+    materias = Materia.objects.filter(titulo__icontains=termo)#icontains usado para filtrar
     return  render(request, 'index.html', {'materias': materias})
 
 
