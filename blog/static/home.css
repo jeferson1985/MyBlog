@@ -43,10 +43,22 @@ a {
     padding: 0 2rem;
 }
 
+.btn-buscar button {
+    width: 250px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: rgb(158, 252, 17);
+    color: gray;
+    cursor: pointer;
+}
+
 .buscar input {
     width: 15rem;
     height: 2rem;
-    margin: 2rem;
+    margin: 2rem 4.5rem;
     padding: 0 .5rem;
     border-radius: 5px;
     border: 1px solid rgb(204, 201, 201);
@@ -70,6 +82,16 @@ select {
     padding: 0 3rem;
     border: 1px solid rgb(204, 201, 201);
     border-radius: 5px;
+}
+
+.btn-adicionar a {
+    float: right;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: rgb(158, 252, 17);
+    color: gray;
 }
 
 .posts {
@@ -100,17 +122,24 @@ select {
 
 .descricao button {
     padding: 1rem 4rem;
-    background-color: greenyellow;
+    background-color: rgb(158, 252, 17);
     color: gray;
     border: none;
     border-radius: 5px;
     margin: .5rem 0;
     font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 img {
     width: 300px;
     height: 300px;
+}
+
+img:hover {
+    cursor: pointer;
+    opacity: .5;
 }
 
 .info-autor,  .data {
@@ -136,6 +165,9 @@ span {
 
     .header h1 {
         font-size: 1.5rem;
+    }
+    .btn-buscar button {
+        margin: 0 4.5rem;
     }
 }
 
@@ -166,6 +198,10 @@ span {
     .buscar input {
         width: 21rem;
         margin: .5rem 0;
+    }
+
+    .btn-buscar button {
+        margin: 1rem 2.5rem;
     }
 
     img {

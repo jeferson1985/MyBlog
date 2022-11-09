@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import Materia
+from django.contrib.auth.decorators import login_required
 
 
 
+@login_required(redirect_field_name='logar')
 def index(request):
     if request.user.is_superuser:
         materias = Materia.objects.all()
@@ -30,3 +32,15 @@ def nova_publicacao(request):
         return redirect('blog')
     else:
         return render(request, 'nova_publicacao.html')
+    
+    
+def info_materia(request, id):
+        materias = Materia.objects.get(id=id)
+        titulo = request.POST.get('titulo')
+        descricao = request.POST.get('descricao')
+        categoria = request.POST.get('categoria')
+        data_publicacao = request.POST.get('data_publicacao')
+        imagem = request.POST.get('imagem')
+        
+        Materia.objects.get(titulo=titulo, descricao=descricao, categoria=categoria, data_publicacao=data_publicacao, imagem=imagem)
+        return render(request, 'info_materia.html', {'materias:':materias})
