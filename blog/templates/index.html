@@ -14,15 +14,15 @@
             <h1>My Blog</h1>
             <div class="header-content">
                 <ul>
-                    <li><a href="./index.html">Início</a></li>
-                    <li><a href="./favoritos.html">Favoritos</a></li>
+                    <li><a href="">Início</a></li>
+                    <li><a href="">Favoritos</a></li>
                     <li><a href="">{{user}}</a></li>
-                        <li><a href="{% url 'logout' %}">Sair</a></li>
+                    <li><a href="{% url 'logout' %}">Sair</a></li>
                 </ul>
             </div>
         </div>
 
-        <form method="GET" action="{% url 'buscar' %}">
+        <form method="GET" action="{% url 'buscar' %}">{%csrf_token%}
             <div class="buscar">
                 <input type="text" name="termo" placeholder="Buscar">
                 <button class="btn-buscar" type="submit">Buscar</button>
@@ -38,14 +38,16 @@
                     </select>
                 </div>
             </div>
-            <a class="button" href="{% url 'nova_publicacao' %}">Adicionar Materia</a>
+            <div class="btn-add">
+                <a class="button" href="{% url 'nova_publicacao' %}">Adicionar Materia</a>
+            </div>
         </form>
 
         <div class="posts">
             {% for materia in materias %}
             <div class="container-materia">
                 <div class="publicacao">
-                    <h2>{{materia.titulo}}</h2>
+                    <a name="info_materia" href="{% url 'info_materia' materia.id %}"><h4>{{materia.titulo}}</h4></a>
                     {% if materia.imagem %}
                         <img src="{{materia.imagem.url}}" alt="">
                     {% endif %}
@@ -62,8 +64,22 @@
                 </div>
                 <div class="descricao">
                     <p>{{materia.descricao}}</p>
-                    <button type="submit">Adicionar comentários</button>
+                    <div class="btns">
+                        <a class="btn-comentario" href="{% url 'info_materia' materia.id %}">Carregar comentários</a>
+                        <a class="btn-comentario" href="{% url 'criar_comentario' materia.id%}">Adicionar comentários</a>
+                    </div>
                 </div>
+                
+                <div class="buttons">
+                    <div class="btn-add-favoritos">
+                        <a name="termo" href="{% url 'lista_favoritos' materia.id%}">Adicionar aos Favoritos</a>
+                    </div>
+
+                    <div class="btn-visualizar-favoritos">
+                        <a name="termo" href="{% url 'exibir_favoritos' materia.id%}">Visualizar aos Favoritos</a>
+                    </div>
+                </div>
+                
             </div>
             {% endfor %}
         </div>

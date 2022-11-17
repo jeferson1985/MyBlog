@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Materia
+from .models import Materia, Comentario, Favoritos
 
 
 class materiaAdmin(admin.ModelAdmin):
@@ -7,3 +7,5 @@ class materiaAdmin(admin.ModelAdmin):
     search_fields = ['autor', 'titulo', 'categoria']
 
 admin.site.register(Materia, materiaAdmin)
+admin.site.register(Comentario)
+admin.site.register(Favoritos)

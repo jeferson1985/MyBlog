@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'comentario.css' %}">
+    <title>Detalhes Matéria</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>My Blog</h1>
+            <div class="header-content">
+                <ul>
+                    <li><a href="./index.html">Início</a></li>
+                    <li><a href="./favoritos.html">Favoritos</a></li>
+                    <li><a href="">{{user}}</a></li>
+                    <li><a href="{% url 'logout' %}">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="posts">
+            {% for favorito in favoritos %}
+                {% if favorito %}
+                    <div class="container-materia">
+                        <div class="publicacao">
+                            <h2>{{favorito.titulo}}</h2>
+                            {% if favorito.imagem %}
+                                <img src="{{favorito.imagem.url}}" alt="">
+                            {% endif %}
+                            <div class="info-autor">
+                                <p>Autor:</p><span>{{favorito.autor}}</span>
+                            </div>
+
+                            <div class="data">
+                                <p>Dada de publicação:</p><span>{{favorito.data_publicacao}}</span>
+                            </div>
+                            <div class="categoria">
+                                <p>Categoria:</p><span>{{favorito.categoria}}</span>
+                            </div>
+                        </div>
+                        <div class="descricao">
+                            <p>{{favorito.descricao}}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
